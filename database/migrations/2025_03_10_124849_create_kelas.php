@@ -11,13 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jadwal_absen', function (Blueprint $table) {
-            $table->id('id_jadwal');
-            $table->date('hari');
-            $table->time('jam_mulai');
-            $table->time('jam_selesai');
-            $table->timestamps();
-        });
+        //
     }
 
     /**
@@ -25,6 +19,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jadwal_absens');
+        //
     }
 };

@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JadwalAbsen;
+use App\Models\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class JadwalAbsenController extends Controller
+class PresensiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $jadwalAbsen = JadwalAbsen::all();
-        return view('jadwalAbsen.index',compact('jadwalAbsen'));
+        $presensi = Presensi::all();
+        return view('presensi.index',compact('presensi'));
     }
 
     /**
@@ -22,7 +22,7 @@ class JadwalAbsenController extends Controller
      */
     public function create()
     {
-        return view('jadwalAbsen.create');
+        return view('presensi.create');
     }
 
     /**
@@ -31,56 +31,59 @@ class JadwalAbsenController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'hari' => ['required'],
+            // ! Perlu dipenyesuaian pada 'hari' apakah dalam bentuk enum atau bentuk tanggal
+            'hari' => ['required','date'],
             'jam_mulai' => ['required'],
             'jam_selesai' => ['required'],
+            'id_kelas' => ['required'],
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        JadwalAbsen::create($validator);
-        return redirect()->route('jadwalAbsen.index')->with('success','Jadwal berhasil di tambahkan');
+        Presensi::create($validator);
+        return redirect()->route('presensi.index')->with('success','Jadwal berhasil di tambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(JadwalAbsen $jadwalAbsen)
+    public function show(Presensi $presensi)
     {
-        return view('jadwalAbsen.show',compact('jadwalAbsen'));
+        return view('presensi.show',compact('presensi'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JadwalAbsen $jadwalAbsen)
+    public function edit(Presensi $presensi)
     {
-        return view('jadwalAbsen.edit',compact('jadwalAbsen'));
+        return view('presensi.edit',compact('presensi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, JadwalAbsen $jadwalAbsen)
+    public function update(Request $request, Presensi $presensi)
     {
         $validator = Validator::make($request->all(),[
             'hari' => ['required'],
             'jam_mulai' => ['required'],
             'jam_selesai' => ['required'],
+            'id_kelas' => ['required'],
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $jadwalAbsen->update($validator->validated());
-        return redirect()->route('jadwalAbsen.index')->with('success','Jadwal berhasil di ubah');
+        $presensi->update($validator->validated());
+        return redirect()->route('presensi.index')->with('success','Jadwal berhasil di ubah');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JadwalAbsen $jadwalAbsen)
+    public function destroy(Presensi $presensi)
     {
-        $jadwalAbsen->delete();
-        return redirect()->route('jadwalAbsen.index')->with('success','Jadwal berhasil dihapus');
+        $presensi->delete();
+        return redirect()->route('presensi.index')->with('success','Jadwal berhasil dihapus');
     }
 }

@@ -12,15 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absen', function (Blueprint $table) {
-            $table->id('id_absen');
+        Schema::create('detail_presensi', function (Blueprint $table) {
+            $table->id('id_detail_presensi');
             $table->unsignedBigInteger('id_user')->nullable();
-            $table->unsignedBigInteger('id_jadwal');
-            $table->dateTime('waktu_absen')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->enum('status', ['hadir', 'izin', 'sakit', 'alpha']);
-            $table->enum('jenis_absen',['datang','pulang']);
+            $table->unsignedBigInteger('id_presensi');
+            $table->dateTime('waktu_presensi')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->enum('kehadiran', ['tepat waktu', 'telat', 'alpha', 'izin','sakit']);
+            $table->enum('kepulangan',['belum keluar','pulang','tidak hadir']);
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->foreign('id_jadwal')->references('id_jadwal')->on('jadwal_absen')->onDelete('cascade');
+            $table->foreign('id_presensi')->references('id_presensi')->on('presensi')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absen');
+        Schema::dropIfExists('detail_presensi');
     }
 };
