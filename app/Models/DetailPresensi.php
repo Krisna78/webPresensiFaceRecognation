@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Absen extends Model
+class DetailPresensi extends Model
 {
     protected $fillable = [
-        'waktu_absen',
-        'status',
-        'jenis_absen',
+        'waktu_presensi',
+        'kehadiran',
+        'kepulangan',
         'id_user',
         'id_jadwal'
     ];

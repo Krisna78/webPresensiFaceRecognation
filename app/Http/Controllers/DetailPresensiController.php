@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
-use App\Models\Absen;
+use App\Models\DetailPresensi;
 use Illuminate\Http\Request;
 
-class AbsenController extends Controller
+class DetailPresensiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $absen = Absen::all();
-        return view('absen.index',compact('absen'));
+        $detailPresensi = DetailPresensi::all();
+        return view('detailPresensi.index',compact('detailPresensi'));
     }
 
     /**
@@ -22,7 +22,7 @@ class AbsenController extends Controller
      */
     public function create()
     {
-        return view('absen.create');
+        return view('detailPresensi.create');
     }
 
     /**
@@ -40,30 +40,30 @@ class AbsenController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        Absen::create($validator->validated());
-        return redirect()->route('absen.index')->with('success','Presensi berhasil ditambahkan');
+        DetailPresensi::create($validator->validated());
+        return redirect()->route('detailPresensi.index')->with('success','Presensi berhasil ditambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Absen $absen)
+    public function show(DetailPresensi $detailPresensi)
     {
-        return view('absen.show',compact('absen'));
+        return view('detailPresensi.show',compact('detailPresensi'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Absen $absen)
+    public function edit(DetailPresensi $detailPresensi)
     {
-        return view('absen.edit',compact('absen'));
+        return view('detailPresensi.edit',compact('detailPresensi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Absen $absen)
+    public function update(Request $request, DetailPresensi $detailPresensi)
     {
         $validator = Validator::make($request->all(),[
             'waktu_absen' => ['required'],
@@ -75,16 +75,16 @@ class AbsenController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $absen->update($validator->validated());
-        return redirect()->route('absen.index')->with('success','Presensi berhasil di ubah');
+        $detailPresensi->update($validator->validated());
+        return redirect()->route('detailPresensi.index')->with('success','Presensi berhasil di ubah');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Absen $absen)
+    public function destroy(DetailPresensi $detailPresensi)
     {
-        $absen->delete();
-        return redirect()->route('absen.index')->with('success','Presensi berhasil dihapus');
+        $detailPresensi->delete();
+        return redirect()->route('detailPresensi.index')->with('success','Presensi berhasil dihapus');
     }
 }
