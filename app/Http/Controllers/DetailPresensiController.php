@@ -35,7 +35,7 @@ class DetailPresensiController extends Controller
             'status' => ['required','string'],
             'jenis_absen' => ['required','string'],
             'id_user' => ['sometimes'],
-            'id_jadwal' => ['required'],
+            'id_presensi' => ['required'],
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -70,7 +70,7 @@ class DetailPresensiController extends Controller
             'status' => ['required','string'],
             'jenis_absen' => ['required','string'],
             'id_user' => ['sometimes'],
-            'id_jadwal' => ['required'],
+            'id_presensi' => ['required'],
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();

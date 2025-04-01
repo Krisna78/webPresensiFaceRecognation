@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -24,6 +26,7 @@ class User extends Authenticatable
         'face_encoding',
         'no_hp',
         'password',
+        'id_ortu'
     ];
 
     /**
@@ -45,5 +48,13 @@ class User extends Authenticatable
         return [
             'password' => 'hashed',
         ];
+    }
+    protected $with = [];
+
+    public function detailPresensi(): BelongsTo {
+        return $this->belongsTo(DetailPresensi::class);
+    }
+    public function ortu(): HasMany {
+        return $this->hasMany(Ortu::class);
     }
 }
