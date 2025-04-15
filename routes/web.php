@@ -1,9 +1,11 @@
 <?php
 
+
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DetailPresensiController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\OrtuController;
+use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 

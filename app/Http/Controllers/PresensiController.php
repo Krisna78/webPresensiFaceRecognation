@@ -31,7 +31,6 @@ class PresensiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            // ! Perlu dipenyesuaian pada 'hari' apakah dalam bentuk enum atau bentuk tanggal
             'hari' => ['required','date'],
             'jam_mulai' => ['required'],
             'jam_selesai' => ['required'],
