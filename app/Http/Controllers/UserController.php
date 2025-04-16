@@ -28,13 +28,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => ['required','string','max:30'],
+            'nama_lengkap' => ['required','string','max:30'],
             'username' => ['required','string','max:30','min:8','lowercase'],
             'password' => ['required','password','min:8'],
             'role' => ['required'],
             'face_encoding' => ['sometimes'],
             'no_hp' => ['sometimes'],
-            'id_ortu' => ['sometimes'],
+            'nama_wali' => ['required']
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -65,13 +65,13 @@ class UserController extends Controller
     public function update(Request $request, User $User)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => ['required','string','max:30'],
+            'nama_lengkap' => ['required','string','max:30'],
             'username' => ['required','string','max:30','min:8','lowercase'],
             'password' => ['required','password','min:8'],
             'role' => ['required'],
             'face_encoding' => ['sometimes'],
             'no_hp' => ['sometimes'],
-            'id_ortu' => ['sometimes'],
+            'nama_wali' => ['required']
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();

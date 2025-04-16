@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('id_user');
-            $table->string('nama');
+            $table->string('nama_lengkap');
             $table->string('username')->unique();
             $table->string('password');
             $table->enum("role",['admin','guru','siswa']);
             $table->text('face_encoding');
             $table->string('no_hp');
-            $table->unsignedBigInteger('id_ortu')->nullable();
-            $table->foreign('id_ortu')->references('id_ortu')->on('ortu')->onDelete('set null');
+            $table->string('nama_wali',30);
             $table->timestamps();
         });
     }

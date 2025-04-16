@@ -20,13 +20,13 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'nama',
+        'nama_lengkap',
         'email',
         'role',
         'face_encoding',
         'no_hp',
         'password',
-        'id_ortu'
+        'nama_wali'
     ];
 
     /**
@@ -53,8 +53,5 @@ class User extends Authenticatable
 
     public function detailPresensi(): BelongsTo {
         return $this->belongsTo(DetailPresensi::class);
-    }
-    public function ortu(): HasMany {
-        return $this->hasMany(Ortu::class);
     }
 }
