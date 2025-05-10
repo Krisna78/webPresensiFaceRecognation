@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DetailPresensiController;
 use App\Http\Controllers\JadwalBelController;
 use App\Http\Controllers\KelasController;

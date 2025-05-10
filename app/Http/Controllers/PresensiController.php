@@ -65,7 +65,7 @@ class PresensiController extends Controller
     public function update(Request $request, Presensi $presensi)
     {
         $validator = Validator::make($request->all(),[
-            'hari' => ['required','date'],
+            'hari' => ['required'],
             'jam_mulai' => ['required'],
             'jam_selesai' => ['required'],
             'id_kelas' => ['required'],

@@ -12,6 +12,7 @@ class DetailPresensi extends Model
         'kehadiran',
         'kepulangan',
         'id_user',
+        'id_jadwal'
         'id_presensi'
     ];
     protected $with = ['user','presensi'];

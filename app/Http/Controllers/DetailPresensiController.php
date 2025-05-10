@@ -13,8 +13,8 @@ class DetailPresensiController extends Controller
      */
     public function index()
     {
-        $detailPresensi = DetailPresensi::all();
-        return view('detailPresensi.index',compact('detailPresensi'));
+        $absen = DetailPresensi::all();
+        return view('absen.index',compact('absen'));
     }
 
     /**
@@ -22,7 +22,7 @@ class DetailPresensiController extends Controller
      */
     public function create()
     {
-        return view('detailPresensi.create');
+        return view('absen.create');
     }
 
     /**
@@ -31,9 +31,9 @@ class DetailPresensiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'waktu_absen' => ['required'],
-            'status' => ['required','string'],
-            'jenis_absen' => ['required','string'],
+            'waktu_presensi' => ['required','date'],
+            'kehadiran' => ['required','string'],
+            'kepulangan' => ['required','string'],
             'id_user' => ['sometimes'],
             'id_presensi' => ['required'],
         ]);
@@ -41,7 +41,7 @@ class DetailPresensiController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         DetailPresensi::create($validator->validated());
-        return redirect()->route('detailPresensi.index')->with('success','Presensi berhasil ditambahkan');
+        return redirect()->route('absen.index')->with('success','Presensi berhasil ditambahkan');
     }
 
     /**
@@ -49,7 +49,7 @@ class DetailPresensiController extends Controller
      */
     public function show(DetailPresensi $detailPresensi)
     {
-        return view('detailPresensi.show',compact('detailPresensi'));
+        return view('absen.show',compact('detailPresensi'));
     }
 
     /**
@@ -57,7 +57,7 @@ class DetailPresensiController extends Controller
      */
     public function edit(DetailPresensi $detailPresensi)
     {
-        return view('detailPresensi.edit',compact('detailPresensi'));
+        return view('absen.edit',compact('detailPresensi'));
     }
 
     /**
@@ -66,9 +66,9 @@ class DetailPresensiController extends Controller
     public function update(Request $request, DetailPresensi $detailPresensi)
     {
         $validator = Validator::make($request->all(),[
-            'waktu_absen' => ['required'],
-            'status' => ['required','string'],
-            'jenis_absen' => ['required','string'],
+            'waktu_presensi' => ['required','date'],
+            'kehadiran' => ['required','string'],
+            'kepulangan' => ['required','string'],
             'id_user' => ['sometimes'],
             'id_presensi' => ['required'],
         ]);
@@ -76,7 +76,7 @@ class DetailPresensiController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $detailPresensi->update($validator->validated());
-        return redirect()->route('detailPresensi.index')->with('success','Presensi berhasil di ubah');
+        return redirect()->route('absen.index')->with('success','Presensi berhasil di ubah');
     }
 
     /**
@@ -84,7 +84,7 @@ class DetailPresensiController extends Controller
      */
     public function destroy(DetailPresensi $detailPresensi)
     {
-        $detailPresensi->delete();
-        return redirect()->route('detailPresensi.index')->with('success','Presensi berhasil dihapus');
+        $absen->delete();
+        return redirect()->route('absen.index')->with('success','Presensi berhasil dihapus');
     }
 }
